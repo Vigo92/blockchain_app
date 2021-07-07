@@ -8,6 +8,10 @@ import java.util.Map;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.blockchain.app.model.dto.BlockChainDTO;
@@ -94,6 +98,24 @@ public class BlockChainServiceImpl implements BlockChainService{
 				});
 		
 		return blockChain;
+	}
+	
+	@Override
+	public Page<BlockChainEntity> getBlockChainResponsePaginated() {
+		
+
+
+    Pageable sortedById = 
+  PageRequest.of(0, 10, Sort.by("id").descending());
+    
+
+		Page<BlockChainEntity> lastFiveProjects = blockChainRepository.findAll(sortedById);
+		
+		
+		return lastFiveProjects;
+		
+		
+		
 	}
 
 }

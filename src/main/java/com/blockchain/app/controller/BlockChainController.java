@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.blockchain.app.model.entity.BlockChainEntity;
 import com.blockchain.app.model.response.BlockChainResponse;
 import com.blockchain.app.service.BlockChainService;
 
@@ -46,6 +48,20 @@ public class BlockChainController {
 		Map<Long,BlockChainResponse> blockChainResponses = blockChainService.getBlockChainResponses();
 		
 		return new ResponseEntity<Map<Long,BlockChainResponse>>(blockChainResponses, HttpStatus.OK);
+		
+		
+	}
+	
+	
+	@GetMapping(path = "chained", produces = {MediaType.APPLICATION_JSON_VALUE},
+			consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<Page<BlockChainEntity>> getBlockPaginated(){
+		
+		Page<BlockChainEntity> blockChainResponses = blockChainService.getBlockChainResponsePaginated();
+		
+		
+		
+		return new ResponseEntity<Page<BlockChainEntity>>(blockChainResponses, HttpStatus.OK);
 		
 		
 	}
