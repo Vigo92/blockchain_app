@@ -27,8 +27,10 @@ public class BlockChainController {
 	private BlockChainService blockChainService;
 	
 	
-	@GetMapping(path = "chains", produces = {MediaType.APPLICATION_JSON_VALUE},
-			consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(path = "chains"
+			//, produces = {MediaType.APPLICATION_JSON_VALUE},
+			//consumes = {MediaType.APPLICATION_JSON_VALUE}
+			)
 	public ResponseEntity<List<BlockChainResponse>> getBlocks(){
 		
 		List<BlockChainResponse> blockChainResponses = blockChainService.getBlockChainResponse();
@@ -41,8 +43,10 @@ public class BlockChainController {
 	}
 	
 	
-	@GetMapping(path = "chain", produces = {MediaType.APPLICATION_JSON_VALUE},
-			consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(path = "chain"
+			//, produces = {MediaType.APPLICATION_JSON_VALUE},
+			//consumes = {MediaType.APPLICATION_JSON_VALUE}
+			)
 	public ResponseEntity<Map<Long,BlockChainResponse>> getBlock(){
 		
 		Map<Long,BlockChainResponse> blockChainResponses = blockChainService.getBlockChainResponses();
@@ -53,8 +57,11 @@ public class BlockChainController {
 	}
 	
 	
-	@GetMapping(path = "chained", produces = {MediaType.APPLICATION_JSON_VALUE},
-			consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(path = "chained"
+			//, 
+			//produces = {MediaType.APPLICATION_JSON_VALUE},
+			//consumes = {MediaType.APPLICATION_JSON_VALUE}
+			)
 	public ResponseEntity<Page<BlockChainEntity>> getBlockPaginated(){
 		
 		Page<BlockChainEntity> blockChainResponses = blockChainService.getBlockChainResponsePaginated();
